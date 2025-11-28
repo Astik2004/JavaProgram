@@ -1,6 +1,6 @@
-package java;
+package javaprogram.program;
 
-import java.thread.MyThread;
+import javaprogram.thread.MyThread;
 
 public class Driver {
     static void main(String[] args) {

@@ -1,4 +1,4 @@
-package java.thread;
+package javaprogram.thread;
 
 public class MyThread implements Runnable{
 

@@ -1,4 +1,4 @@
-package java;
+package javaprogram.program;
 
 public class SelectionSort {
     static void main(String[] args) {

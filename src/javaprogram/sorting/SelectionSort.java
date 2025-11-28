@@ -1,9 +1,9 @@
-package java.sorting;
+package javaprogram.sorting;
 
 import java.util.Arrays;
 
 public class SelectionSort {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         int []a={12,23,11,8,9,25};
         sortS(a);
         System.out.println(Arrays.toString(a));

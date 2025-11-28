@@ -1,4 +1,4 @@
-package java;
+package javaprogram.program;
 
 public class StackUsingArray {
     private int top;

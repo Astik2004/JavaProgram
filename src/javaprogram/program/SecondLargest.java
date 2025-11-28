@@ -1,4 +1,4 @@
-package java;
+package javaprogram.program;
 
 public class SecondLargest {
     static void main(String[] args) {
