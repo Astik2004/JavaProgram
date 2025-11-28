@@ -1,4 +1,4 @@
-package oodles.thread;
+package java.thread;
 
 public class MyThread implements Runnable{
 

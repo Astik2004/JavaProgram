@@ -1,4 +1,4 @@
-package oodles;
+package java;
 
 public class StackUsingArray {
     private int top;

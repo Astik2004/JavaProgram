@@ -1,4 +1,4 @@
-package oodles;
+package java;
 
 public class Palinedrom {
     static void main(String[] args) {

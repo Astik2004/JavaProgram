@@ -1,6 +1,6 @@
-package oodles;
+package java;
 
-import oodles.thread.MyThread;
+import java.thread.MyThread;
 
 public class Driver {
     static void main(String[] args) {

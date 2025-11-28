@@ -1,4 +1,4 @@
-package oodles;
+package java;
 
 public class SelectionSort {
     static void main(String[] args) {
