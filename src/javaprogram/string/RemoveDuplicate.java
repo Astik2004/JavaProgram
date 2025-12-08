@@ -2,6 +2,7 @@ package javaprogram.string;
 
 public class RemoveDuplicate {
     public static void main(String[] args) {
+        String s="kasdiwejcbdibcjkd";
         StringBuilder sb=new StringBuilder();
         boolean [] seen=new boolean[256];
         for(int i=0;i<s.length();i++)
