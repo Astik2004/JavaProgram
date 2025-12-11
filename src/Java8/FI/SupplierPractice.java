@@ -1,6 +1,5 @@
-package Java8.functionalInterface;
+package Java8.FI;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.function.Supplier;
 

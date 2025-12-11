@@ -1,7 +1,6 @@
-package Java8.functionalInterface;
+package Java8.FI;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Consumer;
 
 public class ConsumerPractice {
