@@ -2,7 +2,7 @@ package javaprogram.string;
 
 public class ReverseWord {
     public static void main(String[] args) {
-        String s="  Astik Kumar Yadav PBH                  ";
+        String s="  Astik Kumar Yadav PBH     i j ";
         String res="";
         String word="";
         for(int i=s.length()-1;i>=0;i--)
@@ -27,7 +27,7 @@ public class ReverseWord {
             }
 
         }
-        if(!word.isBlank())
+        if(!word.isEmpty())
         {
             res=res+" "+word;
         }
