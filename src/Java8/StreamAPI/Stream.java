@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Stream {
     public static void main(String[] args) {
-        int[] a={12,13,14,15,2,3,4,5};
+        int[] a={12,13,14,15,2,3,4,5,26};
         Arrays.stream(a).filter(x->x%2==0).forEach(System.out::println);
 
         List<String> words = List.of("apple", "banana", "APPLE", "grape", "kiwi", "melon", "kiwi");
