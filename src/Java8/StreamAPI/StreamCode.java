@@ -1,5 +1,6 @@
 package Java8.StreamAPI;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,9 +20,22 @@ public class StreamCode {
                 map(String::toUpperCase).
                 collect(Collectors.toList());
 
-        for(String s:name)
-        {
-            System.out.println(s);
-        }
+        List<Double>evenSalary=employees.stream().
+                map(Employee::getSalary).
+                filter(sal->sal%2==0)
+                .collect(Collectors.toList());
+
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getSalary)).
+                forEach(e-> System.out.println(e.toString()));
+
+
+        //System.out.println(evenSalary);
+//        for(String s:name)
+//        {
+//            System.out.println(s);
+//        }
+
+
     }
 }
