@@ -1,6 +1,7 @@
 package Java8.StreamAPI.BankingPractice;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,36 +29,36 @@ public class StreamDriver {
                 .filter(t->t.getAmount()>100000)
                 .map(Transaction::getAccountNumber)
                 .collect(Collectors.toList());
-        System.out.println(accounts);
+        //System.out.println(accounts);
                 //.forEach(System.out::println);
         //Example 1: Find all HIGH VALUE transactions (> ₹50,000)
         List<Transaction>highValueTxns=transactions.stream()
                 .filter(t->t.getAmount()>50000)
                 .toList();
-        System.out.println(highValueTxns);
+        //System.out.println(highValueTxns);
         //Example 2: Failed transactions report
         List<Transaction>failedTransactionReport =transactions.stream()
                 .filter(t->t.getStatus().equals("FAILED"))
                 .toList();
-        System.out.println(failedTransactionReport);
+        //System.out.println(failedTransactionReport);
         //Example: Extract account numbers from transactions
         List<String>listAccountNumber =transactions.stream()
                 .map(Transaction::getAccountNumber)
                 .distinct()
                 .toList();
-        System.out.println(listAccountNumber);
+        //System.out.println(listAccountNumber);
         //Total credited amount of the day
         double totalTransaction=transactions.stream()
                 .filter(t->t.getType().equals("CREDIT"))
                 .mapToDouble(Transaction::getAmount)
                 .sum();
-        System.out.println(totalTransaction);
+        //System.out.println(totalTransaction);
         //Group transactions by account number
         Map<String,List<Transaction>> groupByAccountNumber=transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::getAccountNumber));
         for(Map.Entry<String,List<Transaction>>entry:groupByAccountNumber.entrySet())
         {
-            System.out.println(entry.getKey()+" : "+entry.getValue());
+            //System.out.println(entry.getKey()+" : "+entry.getValue());
         }
         //Total debit per account
         Map<String,Double>totalDebitPerAccount =transactions.stream()
@@ -66,9 +67,56 @@ public class StreamDriver {
                         Transaction::getAccountNumber,
                         Collectors.summingDouble(Transaction::getAmount)
                 ));
-        System.out.println(totalDebitPerAccount);
-
-
+        //System.out.println(totalDebitPerAccount);
+        //Sort all transactions by date (latest first) and return the list.
+        List<Transaction>transactionBydate =transactions.stream()
+                .sorted(Comparator.comparing(Transaction::getDate).reversed())
+                .limit(2)
+                .toList();
+        //System.out.println(transactionBydate);
+        //Sort transactions by amount (ascending) to analyze small-to-large transfers.
+        List<Transaction>smallToLargeTransafer=transactions.stream()
+                .sorted(Comparator.comparing(Transaction::getAmount))
+                .toList();
+        //System.out.println(smallToLargeTransafer);
+        //Filter transactions with amount > ₹50,000 and sort by amount (descending).
+        List<Transaction>sortedData=transactions.stream()
+                .filter(t->t.getAmount()>=50000)
+                .sorted(Comparator.comparing(Transaction::getAmount).reversed())
+                .toList();
+        //System.out.println(sortedData);
+        //Fetch the latest 5 CREDIT transactions, sorted by date descending.
+        sortedData=transactions.stream()
+                .filter(t->"CREDIT".equals(t.getType()))
+                .sorted(Comparator.comparing(Transaction::getDate).reversed())
+                .toList();
+        //System.out.println(sortedData);
+        //Sort transactions first by account number, then by transaction date.
+        sortedData=transactions.stream()
+                .sorted(Comparator.comparing(Transaction::getAccountNumber).thenComparing(Transaction::getDate))
+                .toList();
+        //Sort all FAILED transactions by date (oldest first).
+        sortedData=transactions.stream()
+                .filter(t->"FAILED".equals(t.getStatus()))
+                .sorted(Comparator.comparing(Transaction::getDate))
+                .toList();
+        for(Transaction t:sortedData)
+        {
+            System.out.println(t);
+        }
+        //Sort transactions by amount descending, then pick top 3 highest transactions per account.
+        Map<String, List<Transaction>>tranDetails =transactions.stream()
+                .collect(Collectors.groupingBy(
+                        Transaction::getAccountNumber,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                list->list.stream()
+                                        .sorted(Comparator.comparing(Transaction::getDate).reversed())
+                                        .limit(3)
+                                        .toList()
+                        )
+                ));
+        System.out.println(tranDetails);
 
     }
 }
