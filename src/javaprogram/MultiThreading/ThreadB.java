@@ -1,24 +1,22 @@
 package javaprogram.MultiThreading;
 
-public class ThreadA implements Runnable{
+public class ThreadB extends Thread {
 
-    @Override
     public void run() {
         System.out.println("Thread Execution Starting...........");
-        for(int i=1;i<50;i++)
-        {
+        for (int i = 1; i < 10; i++) {
             try {
-                System.out.println(i);
+                System.out.println("Astik Yadav");
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                System.out.println(e);
             }
         }
         System.out.println("Thread Execution ending...........");
     }
+
     public static void main(String[] args) {
-        ThreadA a=new ThreadA();
-        Thread t1=new Thread(a);
-        t1.start();
+        ThreadB tb = new ThreadB();
+        tb.start();   // starts a new thread
     }
 }
