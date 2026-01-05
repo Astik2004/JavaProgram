@@ -61,6 +61,30 @@ public class SingleLinkedList {
         }
         temp.next=null;
     }
+    public int getSize()
+    {
+        Node temp=head;
+        int c=0;
+        while(temp!=null)
+        {
+            c++;
+            temp=temp.next;
+        }
+        return c;
+    }
+    public boolean searchElement(int element)
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            if(temp.data==element)
+            {
+                return true;
+            }
+            temp=temp.next;
+        }
+        return false;
+    }
     public void printList()
     {
         Node temp=head;

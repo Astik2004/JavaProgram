@@ -29,5 +29,7 @@ public class LinkedListDriver {
         System.out.println("Delete from End");
         sll.deleteFromEnd();
         sll.printList();
+        System.out.println("Size of Linked List : "+sll.getSize());
+        System.out.println(sll.searchElement(10000));
     }
 }
