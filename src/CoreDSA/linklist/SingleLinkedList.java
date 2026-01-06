@@ -72,18 +72,20 @@ public class SingleLinkedList {
         }
         return c;
     }
-    public boolean searchElement(int element)
+    public String searchElement(int element)
     {
+        int c=0;
         Node temp=head;
         while(temp!=null)
         {
+            c++;
             if(temp.data==element)
             {
-                return true;
+                return "Element Found at Postion "+c;
             }
             temp=temp.next;
         }
-        return false;
+        return "Element "+element+" not prasent in linkedlist";
     }
     public void printList()
     {

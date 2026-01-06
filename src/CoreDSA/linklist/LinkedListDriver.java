@@ -30,6 +30,6 @@ public class LinkedListDriver {
         sll.deleteFromEnd();
         sll.printList();
         System.out.println("Size of Linked List : "+sll.getSize());
-        System.out.println(sll.searchElement(10000));
+        System.out.println(sll.searchElement(12));
     }
 }
