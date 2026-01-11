@@ -1,9 +1,9 @@
 package CoreDSA;
 
 public class StackArray {
-    private int [] arr;
+    final private int [] arr;
     private int top;
-    private int capacity;
+    final private int capacity;
 
     StackArray(int size) {
         arr = new int[size];
