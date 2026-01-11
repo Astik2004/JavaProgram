@@ -1,5 +1,4 @@
 package CoreDSA.Stack;
-
 public class StackImpl {
     Node top;
     public void push(int data)
