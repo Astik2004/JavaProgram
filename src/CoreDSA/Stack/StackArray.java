@@ -1,4 +1,4 @@
-package CoreDSA;
+package CoreDSA.Stack;
 
 public class StackArray {
     final private int [] arr;
