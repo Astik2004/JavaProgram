@@ -3,7 +3,9 @@ package CoreDSA.array;
 public class TwoSum {
     public static void main(String[] args) {
             int []a={1,4,45,6,10,8};
-            int t=16;
+            int t=10;
+            int[]res=twoSum(a,t);
+            System.out.println(res[0]+" ,"+res[1]);
             if(isTwoSum(a,t))
             {
                 System.out.println("Two Sum");
@@ -26,5 +28,24 @@ public class TwoSum {
             }
         }
         return false;
+    }
+    public static int[] twoSum(int [] a,int t)
+    {
+        int l=0,r=a.length-1;
+        while(l<r)
+        {
+            if(a[l]+a[r]==t)
+            {
+                return new int[]{l+1,r+1};
+            }
+            else if (a[l]+a[r]>t) {
+                r--;
+            }
+            else {
+                l++;
+            }
+
+        }
+        return  new int[]{-1,-1};
     }
 }
