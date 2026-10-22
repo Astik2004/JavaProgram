@@ -1,22 +1,67 @@
 package javaUpdate8_21.java8.StreamAPI;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class StreamAPI {
     static void main(String[] args) {
-        Employee e1 = new Employee("John", 35, 55000.00);
-        Employee e2 = new Employee("David", 25, 45000.00);
-        Employee e3 = new Employee("Buttler", 35, 35000.00);
-        Employee e4 = new Employee("Steve", 45, 65000.00);
+        List<Employee> employees = List.of(
+                new Employee("Amit", "IT", 60000),
+                new Employee("Rahul", "IT", 40000),
+                new Employee("Priya", "HR", 70000),
+                new Employee("Neha", "HR", 30000),
+                new Employee("Vikas", "Finance", 80000)
+        );
 
-        List<Employee> employees = Arrays.asList(e1,e2,e3,e4);
+        Map<String,Integer> totalSalary=employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.summingInt(Employee::getSalary)
+                ));
 
-        employees.stream()
-                .filter(e->e.age>25 && e.salary>5500)
-                .map(e->e.name+"--"+e.age+"--"+e.salary)
-                .forEach(e->System.out.println(e));
+        Map<String,Double>avgSalary=employees.stream()
+                        .collect(Collectors.groupingBy(
+                                Employee::getDepartment,
+                                Collectors.averagingInt(Employee::getSalary)
+                        ));
 
+        Map<String,Long>countEmployee=employees.stream()
+                .collect(Collectors.groupingBy(
+                       Employee::getDepartment,
+                       Collectors.counting()
+                ));
+
+        Map<String, Optional<Employee>> highestPaid =
+                employees.stream()
+                        .collect(Collectors.groupingBy(
+                                Employee::getDepartment,
+                                Collectors.maxBy(
+                                        Comparator.comparingInt(Employee::getSalary)
+                                )
+                        ));
+
+        Map<String,IntSummaryStatistics>result=employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.summarizingInt(Employee::getSalary)
+                ));
+        IntSummaryStatistics data=result.get("IT");
+
+        System.out.println(data.getMax());
+        System.out.println(data.getMin());
+        System.out.println(data.getSum());
+        System.out.println(data.getAverage());
+        System.out.println(data.getCount());
+
+
+//        System.out.println("Total Salary : "+totalSalary);
+//        System.out.println("Average Salary : "+avgSalary);
+//        System.out.println("Employee Count : "+countEmployee);
+//        System.out.println("Highest paid: " + highestPaid);
+//        highestPaid.forEach((dep,emp)->{
+//            emp.ifPresent(e-> System.out.println(dep+"-->"+e.getName()+","+e .getSalary()));
+//        });
 
     }
 }
